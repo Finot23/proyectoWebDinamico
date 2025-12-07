@@ -1,0 +1,32 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package mx.uam.controller;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import mx.uam.model.dto.StockMovementDTO;
+import mx.uam.service.StockMovementService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/movimientos")
+@Tag(name = "Movimientos de Stock", description = "Registrar entradas y salidas de almacén")
+public class StockMovementController {
+
+    @Autowired
+    private StockMovementService stockMovementService;
+
+    @PostMapping
+    @Operation(summary = "Registrar Movimiento", description = "Crea un movimiento y actualiza el stock del producto automáticamente")
+    public ResponseEntity<StockMovementDTO> create(@RequestBody StockMovementDTO dto) {
+        StockMovementDTO created = stockMovementService.create(dto);
+        if (created == null) {
+            // Retornamos 400 si falla (ej. stock insuficiente o producto no existe)
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(created);
+    }
+}

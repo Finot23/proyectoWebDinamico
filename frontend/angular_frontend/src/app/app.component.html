@@ -1,0 +1,31 @@
+<mat-drawer-container class="prueba-Conteiner" autosize>
+  
+  <mat-drawer #drawer class="prueba-sidenav" mode="side">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/departamentos" (click)="drawer.close()">
+        <mat-icon>group</mat-icon> Departamentos
+      </a>
+      <a mat-list-item routerLink="/productos" (click)="drawer.close()">
+        <mat-icon>inventory</mat-icon> Productos
+      </a>
+      </mat-nav-list>
+  </mat-drawer>
+  
+  <mat-drawer-content>
+    <mat-toolbar color="primary">
+      
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <span>Sistema de Gestión de Inventario Básico</span>
+
+      
+    </mat-toolbar>
+
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+
+</mat-drawer-container>
