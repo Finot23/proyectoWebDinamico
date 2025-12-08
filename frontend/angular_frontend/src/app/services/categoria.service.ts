@@ -19,6 +19,18 @@ export class CategoriaService {
   getAll(): Observable<CategoriaDTO[]> {
     return this.http.get<CategoriaDTO[]>(this.base);
   }
+  create(categoria: CategoriaDTO): Observable<CategoriaDTO> {
+    return this.http.post<CategoriaDTO>(this.base, categoria);
+  }
+
+  update(id: number, categoria: CategoriaDTO): Observable<CategoriaDTO> {
+    return this.http.put<CategoriaDTO>(`${this.base}/${id}`, categoria);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.base}/${id}`);
+  }
+
   private handleError(err: any) {
       console.error(err);
       return throwError(() => err);
