@@ -1,0 +1,54 @@
+<div style="padding: 20px;">
+  <h1>📊 Dashboard General</h1>
+
+  <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px;">
+
+    <mat-card style="flex: 1; min-width: 200px; background-color: #e3f2fd;">
+      <mat-card-header>
+        <mat-icon mat-card-avatar color="primary">inventory_2</mat-icon>
+        <mat-card-title>{{ totalProductos }}</mat-card-title>
+        <mat-card-subtitle>Productos Totales</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card style="flex: 1; min-width: 200px; background-color: #f3e5f5;">
+      <mat-card-header>
+        <mat-icon mat-card-avatar color="accent">category</mat-icon>
+        <mat-card-title>{{ totalCategorias }}</mat-card-title>
+        <mat-card-subtitle>Categorías Registradas</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card style="flex: 1; min-width: 200px; background-color: #ffebee;">
+      <mat-card-header>
+        <mat-icon mat-card-avatar color="warn">warning</mat-icon>
+        <mat-card-title>{{ productosBajoStock.length }}</mat-card-title>
+        <mat-card-subtitle>Productos por agotarse</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
+
+  <h2 style="color: #d32f2f;">🚨 Atención Requerida: Bajo Stock (&lt; 5)</h2>
+
+  <mat-card>
+    <mat-list>
+        
+        <ng-container *ngFor="let prod of productosBajoStock">
+            <mat-list-item>
+                <mat-icon matListItemIcon color="warn">priority_high</mat-icon>
+                <span matListItemTitle>{{ prod.nombre }}</span>
+                <span matListItemLine>Quedan solo <strong>{{ prod.stockActual }}</strong> unidades</span>
+                <span matListItemMeta>${{ prod.precio }}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+        </ng-container>
+
+        <mat-list-item *ngIf="productosBajoStock.length === 0">
+            <mat-icon matListItemIcon style="color: green;">check_circle</mat-icon>
+            <span matListItemTitle>¡Todo en orden!</span>
+            <span matListItemLine>No hay productos con stock crítico.</span>
+        </mat-list-item>
+
+    </mat-list>
+  </mat-card>
+</div>

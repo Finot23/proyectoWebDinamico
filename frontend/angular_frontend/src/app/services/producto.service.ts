@@ -20,6 +20,9 @@ export class ProductoService {//CAMBIAR //Nombre del servicio
   getById(id: number) {
     return this.http.get<ProductoDTO>(`${this.base}/${id}`).pipe(catchError(this.handleError));
   }
+  getBajoStock(): Observable<ProductoDTO[]> {
+  return this.http.get<ProductoDTO[]>(`${this.base}/bajo-stock`);
+}
   create(emp: ProductoDTO) {
     return this.http.post<ProductoDTO>(this.base, emp).pipe(catchError(this.handleError));
   }
@@ -29,6 +32,7 @@ export class ProductoService {//CAMBIAR //Nombre del servicio
   delete(id: number) {
     return this.http.delete(`${this.base}/${id}`).pipe(catchError(this.handleError));
   }
+
   private handleError(err: any) {
     console.error(err);
     return throwError(() => err);
