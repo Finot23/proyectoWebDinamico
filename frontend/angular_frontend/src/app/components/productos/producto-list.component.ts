@@ -10,6 +10,7 @@ import { ProductoFormComponent } from './producto-form.component';
 import { MovimientoFormComponent } from '../movimientos/movimiento-form.component';
 import { StockMovementDTO } from '../../models/stockMovement.model';
 
+
 @Component({
   selector: 'app-producto-list',
   standalone: true,
@@ -22,11 +23,11 @@ export class ProductoListComponent implements OnInit {
   private productoService = inject(ProductoService);
   private dialog = inject(MatDialog);
 
-  // --- 1. VARIABLES DE LA TABLA (Que faltaban en tu código) ---
+ 
   displayedColumns: string[] = ['id', 'nombre', 'precio', 'stockActual','descripcion','categoria','acciones'];
   dataSource: ProductoDTO[] = [];
 
-  // --- 2. CARGA INICIAL ---
+
   ngOnInit() {
     this.cargarProductos();
   }
@@ -43,29 +44,36 @@ export class ProductoListComponent implements OnInit {
     const dialogRef = this.dialog.open(MovimientoFormComponent, {
       width: '400px',
       data: { id: idProducto }
+      
     });
+    dialogRef.afterClosed().subscribe(resultado => {
+      if (resultado) {
+        
+      }
+    });
+  
   }
-  // --- 3. LÓGICA DEL FORMULARIO (Lo nuevo) ---
+ 
   abrirFormulario(productoEditar?: ProductoDTO) {
     const dialogRef = this.dialog.open(ProductoFormComponent, {
       width: '500px',
-      // Si pasamos un producto, es EDICIÓN. Si es null, es CREACIÓN.
+      
       data: productoEditar || null 
     });
 
     dialogRef.afterClosed().subscribe(resultado => {
       if (resultado) {
-        // Si el formulario devolvió 'true' (guardado exitoso), recargamos la tabla
+        
         this.cargarProductos();
       }
     });
   }
   
-  // --- 4. LÓGICA DE BORRADO ---
+
   eliminar(id: number) {
     if(confirm('¿Estás seguro de que deseas eliminar este producto?')) {
       this.productoService.delete(id).subscribe(() => {
-        // Recargamos la tabla después de borrar
+        
         this.cargarProductos();
       });
     }
