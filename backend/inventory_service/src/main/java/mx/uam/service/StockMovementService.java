@@ -31,11 +31,16 @@ public class StockMovementService {
 
   
     public StockMovementDTO create(StockMovementDTO dto) {
-        // Validamos que el producto exista
+       
+        if (dto.getProductoId() == null) {
+        System.out.println("❌ ERROR CRÍTICO: El productoId es NULL. Revisa el Frontend.");
+        return null; 
+    }
         Optional<Producto> productoOpt = productoRepository.findById(dto.getProductoId());
-        if (!productoOpt.isPresent()) {
-            return null; // O lanzar una excepción
-        }
+        
+if (!productoOpt.isPresent()) {
+        return null;
+    }
 
         Producto producto = productoOpt.get();
 

@@ -22,7 +22,7 @@ import { StockMovementService } from '../../services/stockMovementService';
     MatSelectModule
   ]
 })
-// CORRECCIÓN: Quitamos "implements OnInit" porque no usas ngOnInit
+
 export class MovimientoFormComponent {
   
   private fb = inject(FormBuilder);
@@ -32,7 +32,7 @@ export class MovimientoFormComponent {
   form: FormGroup;
   productoId: number;
 
-  // Recibimos la data del diálogo
+ 
   public data: { id: number } = inject(MAT_DIALOG_DATA);
 
   constructor() {
@@ -47,7 +47,6 @@ export class MovimientoFormComponent {
   guardar() {
     if (this.form.invalid) return;
 
-    // TIP EXTRA: Si tienes una interfaz (DTO), úsala aquí para evitar errores de tipo
     const movimiento = {
       productoId: this.productoId,
       tipo: this.form.value.tipo,
@@ -56,12 +55,12 @@ export class MovimientoFormComponent {
 
     this.stockService.create(movimiento).subscribe({
       next: () => {
-        // Cerramos el modal enviando "true" para que la tabla sepa que debe recargar
+        
         this.dialogRef.close(true); 
       },
       error: (err) => {
         console.error(err);
-        // Sugerencia: Muestra un mensaje más amigable si puedes
+        
         alert('Error al guardar el movimiento');
       }
     });

@@ -12,6 +12,7 @@ export const routes: Routes = [
   //{ path: 'departamentos', component: DepartamentoListComponent },
   { path: 'productos', component: ProductoListComponent },
   { path: 'stockMovement', component: StockListComponent }
+  //{ path: 'categorias', component: CategoriaListComponet}
 ];
 
 @NgModule({
