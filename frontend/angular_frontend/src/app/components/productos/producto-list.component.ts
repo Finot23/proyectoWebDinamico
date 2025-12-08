@@ -3,22 +3,22 @@ import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog'; // <--- Importante para el modal
-import { ProductoService } from '../../services/producto.service'; // <--- Revisa esta ruta (según tu estructura anterior)
+import { MatDialog, MatDialogModule } from '@angular/material/dialog'; 
+import { ProductoService } from '../../services/producto.service'; 
 import { ProductoDTO } from '../../models/producto.model';
 import { ProductoFormComponent } from './producto-form.component';
 
 @Component({
   selector: 'app-producto-list',
   standalone: true,
-  // Agregamos MatDialogModule para que funcionen los diálogos
+ 
   imports: [CommonModule, MatTableModule, MatCardModule, MatButtonModule, MatDialogModule], 
-  templateUrl: './producto-list.component.html',
+  templateUrl: './producto-list.component.html'
   //styleUrl: './producto-list.component.css'
 })
 export class ProductoListComponent implements OnInit {
   private productoService = inject(ProductoService);
-  private dialog = inject(MatDialog); // Inyectamos el servicio de Dialog
+  private dialog = inject(MatDialog);
 
   // --- 1. VARIABLES DE LA TABLA (Que faltaban en tu código) ---
   displayedColumns: string[] = ['id', 'nombre', 'precio', 'stockActual', 'acciones'];

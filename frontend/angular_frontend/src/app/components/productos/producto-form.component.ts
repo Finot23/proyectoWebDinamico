@@ -1,44 +1,46 @@
-import { Component, Inject, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { ProductoDTO } from '../../models/producto.model';
+import { ProductoService } from '../../services/producto.service';
+
+// MODULOS EXTRAS
+import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { ProductoService } from '../../services/producto.service';
-import { CategoriaService, Categoria } from '../../services/categoria.service';
-import { ProductoDTO } from '../../models/producto.model';
+import { CategoriaService } from '../../services/categoria.service';
+import { CategoriaDTO } from '../../models/categoria.model';
 
 @Component({
   selector: 'app-producto-form',
   standalone: true,
+  templateUrl: './producto-form.component.html',
   imports: [
     CommonModule, 
-    ReactiveFormsModule, // Vital para formularios
+    ReactiveFormsModule, 
     MatDialogModule, 
     MatButtonModule, 
     MatFormFieldModule, 
     MatInputModule, 
     MatSelectModule
-  ],
-  templateUrl: './producto-form.component.html',
-  //styleUrl: './producto-form.component.css'
+  ]
 })
 export class ProductoFormComponent implements OnInit {
   private fb = inject(FormBuilder);
   private productoService = inject(ProductoService);
   private categoriaService = inject(CategoriaService);
-  
-  // Referencia a la ventana para poder cerrarla
-  private dialogRef = inject(MatDialogRef<ProductoFormComponent>);
+  public dialogRef = inject(MatDialogRef<ProductoFormComponent>);
 
+  public data: ProductoDTO | null = inject(MAT_DIALOG_DATA);
+  
   form: FormGroup;
-  categorias: Categoria[] = [];
+
+  categorias: CategoriaDTO[] = []; 
   esEdicion = false;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: ProductoDTO | null) {
-    // Definimos las reglas del formulario
+  constructor(){
     this.form = this.fb.group({
       id: [null],
       nombre: ['', [Validators.required, Validators.minLength(3)]],
@@ -48,10 +50,10 @@ export class ProductoFormComponent implements OnInit {
       categoriaId: [null, [Validators.required]]
     });
 
-    // Si viene data, es EDICIÓN. Rellenamos el formulario.
-    if (data) {
+ 
+    if (this.data) {
       this.esEdicion = true;
-      this.form.patchValue(data);
+      this.form.patchValue(this.data);
     }
   }
 
@@ -60,6 +62,7 @@ export class ProductoFormComponent implements OnInit {
   }
 
   cargarCategorias() {
+
     this.categoriaService.getAll().subscribe(cats => this.categorias = cats);
   }
 
@@ -69,12 +72,12 @@ export class ProductoFormComponent implements OnInit {
     const producto = this.form.value;
 
     if (this.esEdicion) {
-      // Lógica de Actualizar
+    
       this.productoService.update(producto.id, producto).subscribe(() => {
-        this.dialogRef.close(true); // Cerramos enviando "true" (éxito)
+        this.dialogRef.close(true); 
       });
     } else {
-      // Lógica de Crear
+   
       this.productoService.create(producto).subscribe(() => {
         this.dialogRef.close(true);
       });

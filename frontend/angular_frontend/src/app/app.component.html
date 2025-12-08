@@ -2,12 +2,21 @@
   
   <mat-drawer #drawer class="prueba-sidenav" mode="side">
     <mat-nav-list>
-      <a mat-list-item routerLink="/departamentos" (click)="drawer.close()">
-        <mat-icon>group</mat-icon> Departamentos
+      
+      <a mat-list-item routerLink="/dashboard" (click)="drawer.close()">
+        <mat-icon>dashboard</mat-icon>Dashboard
+      </a>
+      <a mat-list-item routerLink="/stockMovement" (click)="drawer.close()">
+        <mat-icon>history</mat-icon>Historial
       </a>
       <a mat-list-item routerLink="/productos" (click)="drawer.close()">
         <mat-icon>inventory</mat-icon> Productos
       </a>
+      <a mat-list-item routerLink="/categorias" (click)="drawer.close()">
+        <mat-icon>group</mat-icon> Categorias
+      </a>
+
+
       </mat-nav-list>
   </mat-drawer>
   

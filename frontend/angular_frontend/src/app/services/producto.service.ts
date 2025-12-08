@@ -15,7 +15,7 @@ export class ProductoService {//CAMBIAR //Nombre del servicio
   constructor(private http: HttpClient) { }//PLANTILLA //Constructor con inyeccion de dependencias
 
   getAll(): Observable<ProductoDTO[]> {
-    return this.http.get<ProductoDTO[]>(environment.apiUrl);
+    return this.http.get<ProductoDTO[]>(this.base);
   }
   getById(id: number) {
     return this.http.get<ProductoDTO>(`${this.base}/${id}`).pipe(catchError(this.handleError));
