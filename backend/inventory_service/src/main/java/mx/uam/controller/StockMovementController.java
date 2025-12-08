@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 @RestController
 @RequestMapping("/stockMovement")
@@ -19,7 +20,13 @@ public class StockMovementController {
 
     @Autowired
     private StockMovementService stockMovementService;
-
+    
+    @GetMapping
+    @Operation(summary="Lista todos los movimientos", description = "Obtiene el historial de movimientos")
+    public List<StockMovementDTO> findAll() {
+        return stockMovementService.findAll();
+    }
+    
     @PostMapping
     @Operation(summary = "Registrar Movimiento", description = "Crea un movimiento y actualiza el stock del producto automáticamente")
     public ResponseEntity<StockMovementDTO> create(@RequestBody StockMovementDTO dto) {
