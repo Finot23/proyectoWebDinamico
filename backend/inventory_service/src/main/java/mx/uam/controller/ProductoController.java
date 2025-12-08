@@ -33,6 +33,12 @@ public class ProductoController {
         }
         return ResponseEntity.ok(dto);
     }
+    
+    @GetMapping("/bajo-stock")
+@Operation(summary = "Productos con bajo stock", description = "Retorna productos con 5 unidades o menos")
+public List<ProductoDTO> getBajoStock() {
+    return productoService.findBajoStock(5);
+}
 
     @PostMapping
     @Operation(summary = "Crear producto", description = "Crea un nuevo producto")

@@ -38,6 +38,12 @@ public class ProductoService {
         return producto.map(this::toDTO).orElse(null);
     }
     
+    public List<ProductoDTO> findBajoStock(Integer limite) {
+    return productoRepository.findByStockActualLessThan(limite).stream()
+            .map(this::toDTO)
+            .collect(Collectors.toList());
+}
+    
 
     
     public ProductoDTO create(ProductoDTO dto) {
