@@ -21,8 +21,9 @@
       </mat-form-field>
 
       <mat-form-field appearance="fill" style="width:100%">
-        <mat-label>Stock Inicial</mat-label>
-        <input matInput type="number" formControlName="stockActual">
+        <mat-label>Stock</mat-label>
+        <input matInput type="number" formControlName="stockActual" [readonly]="esEdicion">
+        
       </mat-form-field>
     </div>
 

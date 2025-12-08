@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Registrar Movimiento</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" style="display: flex; flex-direction: column; gap: 15px; padding-top: 10px;">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo de Movimiento</mat-label>
+      <mat-select formControlName="tipo">
+        <mat-option value="ENTRADA">📥 Entrada (Compra/Devolución)</mat-option>
+        <mat-option value="SALIDA">📤 Salida (Venta/Pérdida)</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Cantidad</mat-label>
+      <input matInput type="number" formControlName="cantidad" min="1">
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="accent" (click)="guardar()" [disabled]="form.invalid">
+    Registrar
+  </button>
+</mat-dialog-actions>

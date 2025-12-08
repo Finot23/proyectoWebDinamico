@@ -7,6 +7,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ProductoService } from '../../services/producto.service'; 
 import { ProductoDTO } from '../../models/producto.model';
 import { ProductoFormComponent } from './producto-form.component';
+import { MovimientoFormComponent } from '../movimientos/movimiento-form.component';
+import { StockMovementDTO } from '../../models/stockMovement.model';
 
 @Component({
   selector: 'app-producto-list',
@@ -21,7 +23,7 @@ export class ProductoListComponent implements OnInit {
   private dialog = inject(MatDialog);
 
   // --- 1. VARIABLES DE LA TABLA (Que faltaban en tu código) ---
-  displayedColumns: string[] = ['id', 'nombre', 'precio', 'stockActual', 'acciones'];
+  displayedColumns: string[] = ['id', 'nombre', 'precio', 'stockActual','descripcion','categoria','acciones'];
   dataSource: ProductoDTO[] = [];
 
   // --- 2. CARGA INICIAL ---
@@ -37,7 +39,12 @@ export class ProductoListComponent implements OnInit {
       error: (err) => console.error('Error al cargar productos:', err)
     });
   }
-
+  abrirMovimiento(idProducto: StockMovementDTO){
+    const dialogRef = this.dialog.open(MovimientoFormComponent, {
+      width: '400px',
+      data: { id: idProducto }
+    });
+  }
   // --- 3. LÓGICA DEL FORMULARIO (Lo nuevo) ---
   abrirFormulario(productoEditar?: ProductoDTO) {
     const dialogRef = this.dialog.open(ProductoFormComponent, {

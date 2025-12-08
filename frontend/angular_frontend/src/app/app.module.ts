@@ -24,6 +24,7 @@ import { AppComponent } from './app.component';
 import { ViewDialogComponent } from './shared/view-dialog.component';
 import { ProductoListComponent } from './components/productos/producto-list.component';
 import { ProductoFormComponent } from './components/productos/producto-form.component';
+//import { MovimientoFormComponent } from './components/movimientos/movimiento-form.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { ProductoFormComponent } from './components/productos/producto-form.comp
   declarations: [
     //AppComponent,
     ViewDialogComponent,
+    //MovimientoFormComponent,
     //ProductoFormComponent,
     //ProductoListComponent,
     
