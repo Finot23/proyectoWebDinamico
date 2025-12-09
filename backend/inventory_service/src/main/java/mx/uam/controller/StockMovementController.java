@@ -32,7 +32,7 @@ public class StockMovementController {
     public ResponseEntity<StockMovementDTO> create(@RequestBody StockMovementDTO dto) {
         StockMovementDTO created = stockMovementService.create(dto);
         if (created == null) {
-            // Retornamos 400 si falla (ej. stock insuficiente o producto no existe)
+           
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(created);

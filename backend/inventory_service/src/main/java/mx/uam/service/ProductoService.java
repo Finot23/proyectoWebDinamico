@@ -1,6 +1,6 @@
 package mx.uam.service;
 
-import java.time.LocalDateTime;
+
 import mx.uam.model.dto.ProductoDTO;
 import mx.uam.model.entity.Producto;
 import mx.uam.model.entity.Categoria;
@@ -10,11 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import mx.uam.model.dto.StockMovementDTO;
-import mx.uam.model.entity.StockMovement;
+
 import mx.uam.repository.CategoriaRepository;
 import mx.uam.repository.ProductoRepository;
-import mx.uam.repository.StockMovementRepository;
 
 @Service
 public class ProductoService {
