@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/materia
 import { ProductoDTO } from '../../models/producto.model';
 import { ProductoService } from '../../services/producto.service';
 
-// MODULOS EXTRAS
+
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';

@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { CategoriaDTO } from '../models/categoria.model';//CAMBIAR //Importa el modelo de datos
-import { environment } from '../../environments/environment';//PLANTILLA //Importa las variables de entorno
+import { CategoriaDTO } from '../models/categoria.model';
+import { environment } from '../../environments/environment';
 
 
 

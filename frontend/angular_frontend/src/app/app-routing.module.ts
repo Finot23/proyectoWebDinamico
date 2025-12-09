@@ -8,8 +8,7 @@ import { CategoriaListComponent } from './components/categorias/categoria-list.c
 
 export const routes: Routes = [
   { path: '', redirectTo: 'productos', pathMatch: 'full' },
-  //{ path: 'empleados', component: EmpleadoListComponent },
-  //{ path: 'departamentos', component: DepartamentoListComponent },
+
   { path: 'productos', component: ProductoListComponent },
   { path: 'stockMovement', component: StockListComponent },
   { path: 'categorias', component: CategoriaListComponent },

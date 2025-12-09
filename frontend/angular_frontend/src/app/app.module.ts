@@ -16,30 +16,22 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-//import { EmpleadoListComponent } from './components/empleados/empleado-list.component';
-//import { EmpleadoFormComponent } from './components/empleados/empleado-form.component';
-//import { DepartamentoListComponent } from './components/departamentos/departamento-list.component';
-//import { DepartamentoFormComponent } from './components/departamentos/departamento-form.component';
+
+
 import { ViewDialogComponent } from './shared/view-dialog.component';
-import { ProductoListComponent } from './components/productos/producto-list.component';
-import { ProductoFormComponent } from './components/productos/producto-form.component';
-//import { MovimientoFormComponent } from './components/movimientos/movimiento-form.component';
+
 
 
 @NgModule({
-  //bootstrap: [AppComponent],
+  
   declarations: [
-    //AppComponent,
+    
     ViewDialogComponent,
-    //MovimientoFormComponent,
-    //ProductoFormComponent,
-    //ProductoListComponent,
+    
     
   ],
   imports: [
-    //AppComponent,
-    //ProductoListComponent,
+   
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,

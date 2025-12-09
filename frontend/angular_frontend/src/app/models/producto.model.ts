@@ -1,4 +1,4 @@
-export interface ProductoDTO { //ni idea porque es dto pero sirve y mi plantilla dice que asi es. ACORDARME DE INVESTIGAR
+export interface ProductoDTO { 
   id?: number;
   nombre: string;
   descripcion: string;

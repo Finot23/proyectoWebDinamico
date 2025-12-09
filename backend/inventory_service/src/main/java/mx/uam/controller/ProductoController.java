@@ -12,7 +12,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import java.util.List;
 
 @RestController
-@RequestMapping("/productos") // <--- ¡Vital! Antes decía /empleados
+@RequestMapping("/productos") // 
 @Tag(name = "Producto", description = "Operaciones CRUD para productos")
 public class ProductoController {
     @Autowired

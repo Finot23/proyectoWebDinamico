@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { StockMovementDTO } from '../models/stockMovement.model';//CAMBIAR //Importa el modelo de datos
-import { environment } from '../../environments/environment';//PLANTILLA //Importa las variables de entorno
+import { StockMovementDTO } from '../models/stockMovement.model';
+import { environment } from '../../environments/environment';
 
 
 

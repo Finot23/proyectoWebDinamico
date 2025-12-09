@@ -20,7 +20,7 @@ public class StockMovementService {
     private StockMovementRepository stockMovementRepository;
 
     @Autowired
-    private ProductoRepository productoRepository; // Necesario para validar al crear
+    private ProductoRepository productoRepository;
 
     
     public List<StockMovementDTO> findAll() {
@@ -48,21 +48,21 @@ if (!productoOpt.isPresent()) {
         StockMovement movement = new StockMovement();
         movement.setTipo(dto.getTipo());
         movement.setCantidad(dto.getCantidad());
-        movement.setFecha(java.time.LocalDateTime.now()); // O la fecha que venga
+        movement.setFecha(java.time.LocalDateTime.now()); 
         movement.setProducto(producto);
 
-        // Lógica de negocio: Actualizar el stock del producto
+       
         if ("ENTRADA".equalsIgnoreCase(dto.getTipo())) {
             producto.setStockActual(producto.getStockActual() + dto.getCantidad());
         } else if ("SALIDA".equalsIgnoreCase(dto.getTipo())) {
-            // Validar que no quede en negativo
+          
             if (producto.getStockActual() < dto.getCantidad()) {
-                return null; // Stock insuficiente
+                return null; 
             }
             producto.setStockActual(producto.getStockActual() - dto.getCantidad());
         }
         
-        // Guardamos ambos (algunos JPA lo hacen en cascada, pero mejor asegurar)
+       
         productoRepository.save(producto);
         StockMovement saved = stockMovementRepository.save(movement);
 
