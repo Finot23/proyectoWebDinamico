@@ -1,4 +1,4 @@
-# Empleados Frontend (Angular + Angular Material)
+# Gestor Inventario Frontend (Angular + Angular Material)
 
 ## Requisitos
 - Node.js 18+ (recomendado)
